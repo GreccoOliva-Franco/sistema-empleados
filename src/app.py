@@ -39,7 +39,10 @@ def storeEmployee():
   sql = "INSERT INTO empleados (name, mail, photoPath) VALUES (%s, %s, %s)"
   values = (_name, _mail, _photo)
 
-  mysql.connect().cursor().execute(sql, values).commit()
+  con = mysql.connect()
+  cur = con.cursor()
+  cur.execute(sql, values)
+  con.commit()
   
   return redirect('empleados/index.html')
 
